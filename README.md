@@ -22,7 +22,7 @@ I bet you noticed that second one.  Yeah, that's mine.  It's a Cron helper that 
 
 # Installation
 
-In _resources, you''ll find the "email_schedule" database schema.  You are expected to install this table schema in your database (the indexes are optional).
+In _resources, you can find the *email schedule* database schema.  You are expected to install this table schema in your database (the indexes are optional).
 
 Assuming you have MySql, you could do the following to install the schema:
 
