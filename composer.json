@@ -1,0 +1,29 @@
+{
+	"name": "am/email-scheduler",
+	"description": "Lightweight email scheduler wraps around SwiftMailer.",
+	"autoload": {
+		"psr-0": {
+			"":"/"
+		}
+	},
+	"repositories": [
+		{
+			"type": "git" ,
+			"url": "https://github.com/createvibe/php-cron-helper.git"
+		}
+	],
+	"require": {
+		"php": ">=5.3" ,
+		"swiftmailer/swiftmailer": ">=5.0.3" ,
+		"createvibe/php-cron-helper": "*"
+	},
+	"scripts": { },
+	"config": {
+		"bin-dir": "bin"
+	},
+	"minimum-stability": "dev",
+	"extra": {
+		"symfony-app-dir": "app",
+		"symfony-web-dir": "web"
+	}
+}
