@@ -1,5 +1,7 @@
 # Email Scheduler
 
+*CAUTION: This is untested and may not work as expected.  Check back really really soon for a stable release.*
+
 Thanks for stopping by.  The Email Scheduler was written for a friend in need.  As you find yourself here, perhaps I have made yet another friend in need.
 
 Simply put, the Email Scheduler provides all the necessary tools (or most... ok some) to schedule and execute (send) email messages.
