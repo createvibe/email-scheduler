@@ -6,7 +6,7 @@ drop table if exists email_schedule;
 
 create table email_schedule (
 	id bigint(20) unsigned not null primary key auto_increment ,
-	userId int not null ,
+	user_id int not null ,
 	email_from varchar(150) not null ,
 	email_from_name varchar(300) not null ,
 	email_to varchar(150) not null ,
