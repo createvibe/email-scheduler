@@ -14,20 +14,16 @@ class ScheduleRepository extends Repository {
 	 */
 	public function getNextSchedule($limit=20, $attemptCount=5) {
 
-		static $st = null;
+		$st = $this->pdo->prepare(
+			'select * ' .
+			'from email_schedule ' .
+			'where send_at <= now() ' .
+			'and delivered_at is null ' .
+			'and attempt_count <= :attemptCount ' . 
+			'order by send_at asc ' .
+			'limit ' . ((int)$limit)
+		);
 
-		if (!$st) {
-			$st = $this->pdo->prepare(
-				'select * ' .
-				'from email_schedule ' .
-				'where send_at <= now() ' .
-				'and delivered_at is null ' .
-				'and attempt_count <= :attemptCount ' . 
-				'order by send_at asc ' .
-				'limit ' . ((int)$limit)
-			);
-		}
-		
 		$hydrator = new ModelHydrator;
 		$schedules = array();
 		
