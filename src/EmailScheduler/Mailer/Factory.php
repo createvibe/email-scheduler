@@ -28,7 +28,7 @@ class Factory {
 	/**
 	 * Get a Mailer Configuration class by its type (name)
 	 *
-	 * @param string $type The driver type (mysql, mssql, oracle, pgsql)
+	 * @param string $type The mailer protocol type (smtp maps to SmtpMailer.php)
 	 * @return string
 	 */
 	static public function getClassByType($type) {
