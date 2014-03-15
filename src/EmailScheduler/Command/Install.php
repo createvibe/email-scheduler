@@ -10,6 +10,7 @@ class Install {
 	 * Install the parameters file
 	 * 
 	 * @param Event $event The Composer Script Event
+	 * @return void
 	 */
 	public static function parameters(Event $event)	{
 		
@@ -17,13 +18,12 @@ class Install {
 		
 		$io = $event->getIO();
 		
-		$io->write('Email Scheduler Parameter Configuration...');
+		$io->write("\nEmail Scheduler Parameter Configuration...\n");
 		
 		$file = __DIR__ . '/../Resources/config/parameters.php';
 		
 		if (file_exists($file)) {
 			if (!in_array(strtolower($io->ask('It looks like parameters.php already exists, do you want to continue? [yes|no]: ', 'yes')), array('y','yes'))) {
-				$io->write('Execution Halted.');
 				return;
 			}
 		}
@@ -63,5 +63,65 @@ class Install {
 		$paramStr[] = $str;
 		
 		file_put_contents($file, join("\n", $paramStr));
+	}
+	
+	/**
+	 * Install the database
+	 *
+	 * @param Event $event
+	 * @return void
+	 */
+	public static function database(Event $event) {
+		
+		$params = require __DIR__ . '/../Resources/config/parameters.php';
+		
+		$file = __DIR__ . '/../../../_resources/schema.' . $params['database']['type'] . '.sql';
+		
+		$io = $event->getIO();
+		
+		if (!file_exists($file)) {
+			$io->write('Cannot locate schema file at ' . $file);
+			return;
+		}
+		
+		$keepGoing = strtolower($io->ask(
+			"\nYou are about to install the \"email_scheduler\" database.  " .
+			'If you already have a table with the same name, it will be completely removed and replaced with a fresh copy.  ' .
+			'Would you like to continue? [yes|no]: '
+		));
+		if (!in_array($keepGoing, array('y','yes'))) {
+			return;
+		}
+		
+		$io->write("\nInstalling Email Scheduler Database...\n");
+		
+		$config = \EmailScheduler\Configuration\Database\Factory::getConfiguration($params['database']['type'], $params['database']);
+		$config->setDatabaseName($params['database']['name']);
+		
+		try {
+			$db = new \EmailScheduler\Database\Connection($config);
+		} catch (\Exception $e) {
+			$io->write("\nCaught Exception; make sure the database is correctly installed and configured, then try again.\n");
+			throw $e;
+		}
+		
+		$sqlParts = explode(';', file_get_contents($file));
+		$len = count($sqlParts);
+		for ($i = 0; $i < $len; $i++) {
+			$sql = trim($sqlParts[$i], ' ;');
+			if (strlen($sql) > 0) {
+				try {
+					$io->write($sql);
+					$st = $db->prepare($sql);
+					$st->execute();
+					$st->closeCursor();
+				} catch (\Exception $e) {
+					$io->write('Caught Exception: ' . $e->getMessage());
+					return;
+				}
+			}
+		}
+		
+		$io->write('Finished Installing Database');
 	}
 }

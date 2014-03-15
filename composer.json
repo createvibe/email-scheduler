@@ -19,7 +19,8 @@
 	},
 	"scripts": { 
 		"post-install-cmd": [
-			"EmailScheduler\\Command\\Install::parameters"
+			"EmailScheduler\\Command\\Install::parameters" ,
+			"EmailScheduler\\Command\\Install::database"
 		]
 	},
 	"config": {
