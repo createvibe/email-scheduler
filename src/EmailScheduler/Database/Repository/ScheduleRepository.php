@@ -126,7 +126,7 @@ class ScheduleRepository extends Repository {
 					$deliveredAt = $deliveredAt->format('Y-m-d H:i:s');
 				}
 			
-				$updatedAt = $schedule->updatedAt ?: new \DateTime;
+				$updatedAt = new \DateTime;
 				$updatedAt = $updatedAt->format('Y-m-d H:i:s');
 		
 				$st->execute(array(
