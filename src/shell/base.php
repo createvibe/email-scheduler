@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base Cron Include
+ * Base Shell Include
  */
 
 // include the vendor autoloader
