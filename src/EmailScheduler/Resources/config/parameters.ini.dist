@@ -9,6 +9,7 @@ type = mysql
 host = localhost
 username = 0
 password = 0
+name = email_scheduler
 
 [mailer]
 type = smtp
