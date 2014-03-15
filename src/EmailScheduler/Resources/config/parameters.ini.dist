@@ -12,7 +12,9 @@ password = 0
 
 [mailer]
 type = smtp
-config = gmail
+configuration = gmail
+username = 0
+password = 0
 
 [schedule]
 archive = 21 days
