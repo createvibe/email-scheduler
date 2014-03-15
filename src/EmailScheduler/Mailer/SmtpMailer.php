@@ -2,7 +2,7 @@
 
 namespace EmailScheduler\Mailer;
 
-class SmtpMailer extends Mailer {
+class SmtpMailer extends AbstractMailer {
 
 	/**
 	 * {@inheritdoc}

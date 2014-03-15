@@ -2,6 +2,8 @@
 
 namespace EmailScheduler\Database;
 
+use EmailScheduler\Configuration\Database\DatabaseConfiguration;
+
 class Connection extends \PDO {
 	
 	/**
@@ -12,7 +14,7 @@ class Connection extends \PDO {
 	 */
 	public function __construct(DatabaseConfiguration $configuration) {
 		
-		parent::construct(
+		parent::__construct(
 			$configuration->getDsn(), 
 			$configuration->getUsername(), 
 			$configuration->getPassword(), 

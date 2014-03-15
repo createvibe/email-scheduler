@@ -2,24 +2,24 @@
 
 namespace EmailScheduler\Mailer;
 
-use EmailScheduler\Configuration\Configruation,
+use EmailScheduler\Configuration\Configuration,
 	EmailScheduler\Model\Schedule;
 
-abstract class Mailer {
+abstract class AbstractMailer {
 	
 	/**
 	 * Transport configuration object
 	 * 
 	 * @type Configuration
 	 */
-	private $config;
-	
+	protected $config;
+
 	/**
 	 * Transport object
 	 *
 	 * @type \Swift_SmtpTransport|\Swift_SendmailTransport|\Swift_MailTransport|*
 	 */
-	private $transport;
+	protected $transport;
 	
 	/**
 	 * Construct this class with a Configuration object
@@ -61,7 +61,7 @@ abstract class Mailer {
 	 * @param array<Schedule> $schedules
 	 * @return Mailer this object (fluent interface)
 	 */
-	public function sendEmail(array $schedules) {
+	public function send(array $schedules) {
 		
 		// get a swift-mailer instance using our transport
 		$mailer = \Swift_Mailer::newInstance($this->getTransport());
@@ -81,7 +81,7 @@ abstract class Mailer {
 			
 				// update delivered-at if it was sent
 				if ($sent) {
-					$schedule->deliveredAt = new \Datetime('now');
+					$schedule->deliveredAt = new \DateTime('now');
 				}
 			
 				// updated attemptCount and updatedAt

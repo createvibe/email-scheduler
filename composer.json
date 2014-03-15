@@ -2,8 +2,8 @@
 	"name": "am/email-scheduler",
 	"description": "Lightweight email scheduler wraps around SwiftMailer.",
 	"autoload": {
-		"psr-0": {
-			"":"/"
+		"psr-4": {
+			"EmailScheduler\\":"src/EmailScheduler"
 		}
 	},
 	"repositories": [
@@ -15,15 +15,16 @@
 	"require": {
 		"php": ">=5.3" ,
 		"swiftmailer/swiftmailer": ">=5.0.3" ,
-		"createvibe/php-cron-helper": "*"
+		"am/php-cron-helper": "*"
 	},
-	"scripts": { },
+	"scripts": { 
+		"post-install-cmd": [
+			"EmailScheduler\\Command\\Install::parameters"
+		]
+	},
 	"config": {
 		"bin-dir": "bin"
 	},
 	"minimum-stability": "dev",
-	"extra": {
-		"symfony-app-dir": "app",
-		"symfony-web-dir": "web"
-	}
+	"extra": { }
 }

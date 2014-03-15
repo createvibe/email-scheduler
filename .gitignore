@@ -1,0 +1,10 @@
+.DS_Store
+
+vendor
+
+composer.lock
+
+src/EmailScheduler/Resources/config/parameters.php
+
+src/shell/cron/logs/*
+src/shell/cron/pids/*

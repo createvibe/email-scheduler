@@ -1,7 +1,3 @@
-create database if not exists email_scheduler;
-
-use email_scheduler;
-
 drop table if exists email_schedule;
 
 create table email_schedule (
@@ -13,7 +9,7 @@ create table email_schedule (
 	email_to_name varchar(300) not null ,
 	email_subject varchar(255) not null ,
 	email_body text not null ,
-	attempt_count int not null default 0 ,
+	attempt_count tinyint(4) unsigned not null default 0 ,
 	delivered_at datetime null ,
 	send_at datetime null ,
 	created_at datetime not null ,

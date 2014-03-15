@@ -1,0 +1,18 @@
+; This is the distributed parameters configuration file
+
+; You are not supposed to modify this file
+
+; When you install this package with Composer, a parameters.ini is generated for you
+
+[database]
+type = mysql
+host = localhost
+username = 0
+password = 0
+
+[mailer]
+type = smtp
+config = gmail
+
+[schedule]
+archive = 21 days

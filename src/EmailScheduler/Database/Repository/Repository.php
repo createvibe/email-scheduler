@@ -9,7 +9,7 @@ class Repository {
 	 *
 	 * @type \PDO
 	 */
-	private $pdo;
+	protected $pdo;
 	
 	/**
 	 * Construct this class with a PDO instance

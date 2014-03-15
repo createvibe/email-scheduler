@@ -1,6 +1,8 @@
 <?php
 
-namespace EmailScheduler\Configuration\Smtp;
+namespace EmailScheduler\Configuration\Mailer\Smtp;
+
+use EmailScheduler\Configuration\Configuration;
 
 class Gmail extends Configuration {
 	

@@ -28,7 +28,7 @@ In _resources, you can find the *email schedule* database schema.  You are expec
 
 Assuming you have MySql, you could do the following to install the schema:
 
-	$ mysql -u root -p < _resources/schema.mysql.sql
+	$ mysql -u root -p YOUR_DATABASE_NAME < _resources/schema.mysql.sql
 	
 # Usage Example
 
