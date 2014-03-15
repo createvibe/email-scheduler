@@ -13,10 +13,10 @@ class ScheduleRepository extends Repository {
 	/**
 	 * Insert a Schedule into the database
 	 * 
-	 * @param Schedule $schedule The schedule to insert
+	 * @param array<Schedule> $schedules Array of schedules to insert
 	 * @return void
 	 */
-	public function insertSchedule(Schedule $schedule) {
+	public function insertSchedules(array $schedules) {
 
 		// TODO : we need to fetch the next id in the sequence for oracle / pgsql
 		$st = $this->pdo->prepare(
@@ -26,34 +26,38 @@ class ScheduleRepository extends Repository {
 			'values (:userId, :from, :fromName, :to, :toName, :subject, :body, :delivered, :send, :created, :updated)'
 		);
 		
-		// make sure we have a created-at
-		if (!$schedule->createdAt) {
-			$createdAt = date('Y-m-d H:i:s');
-		} else {
-			$createdAt = $schedule->createdAt->format('Y-m-d H:i:s');
+		foreach ($schedules as $schedule) {
+			
+			if ($schedule instanceof Schedule) {
+		
+				// make sure we have a created-at
+				if (!$schedule->createdAt) {
+					$createdAt = date('Y-m-d H:i:s');
+				} else {
+					$createdAt = $schedule->createdAt->format('Y-m-d H:i:s');
+				}
+		
+				$bool = $st->execute(array(
+					'userId' => $schedule->userId ,
+					'from' => $schedule->emailFrom ,
+					'fromName' => $schedule->emailFromName ,
+					'to' => $schedule->emailTo ,
+					'toName' => $schedule->emailToName ,
+					'subject' => $schedule->emailSubject ,
+					'delivered' => $schedule->deliveredAt ? $schedule->deliveredAt->format('Y-m-d H:i:s') : null ,
+					'send' => $schedule->sendAt ? $schedule->sendAt->format('Y-m-d H:i:s') : null ,
+					'createdAt' => $createdAt ,
+					'updatedAt' => $schedule->updatedAt ? $schedule->updatedAt->format('Y-m-d H:i:s') : null
+				));
+		
+				$st->closeCursor();
+		
+				if ($bool) {
+					$schedule->id = $this->pdo->lastInsertId();
+					$schedule->createdAt = $createdAt;
+				}
+			}
 		}
-		
-		$bool = $st->execute(array(
-			'userId' => $schedule->userId ,
-			'from' => $schedule->emailFrom ,
-			'fromName' => $schedule->emailFromName ,
-			'to' => $schedule->emailTo ,
-			'toName' => $schedule->emailToName ,
-			'subject' => $schedule->emailSubject ,
-			'delivered' => $schedule->deliveredAt ? $schedule->deliveredAt->format('Y-m-d H:i:s') : null ,
-			'send' => $schedule->sendAt ? $schedule->sendAt->format('Y-m-d H:i:s') : null ,
-			'createdAt' => $createdAt ,
-			'updatedAt' => $schedule->updatedAt ? $schedule->updatedAt->format('Y-m-d H:i:s') : null
-		));
-		
-		$st->closeCursor();
-		
-		if ($bool) {
-			$schedule->id = $this->pdo->lastInsertId();
-			$schedule->createdAt = $createdAt;
-		}
-		
-		return $bool;
 	}
 
 	/**
