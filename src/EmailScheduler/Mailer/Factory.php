@@ -7,7 +7,7 @@ use EmailScheduler\Configuration\Configuration;
 class Factory {
 	
 	/**
-	 * Get a Mailer object by its configuration
+	 * Get a Mailer object by its type
 	 *
 	 * @param string $type The type of mailer (smtp)
 	 * @param Configuration $config The configuration
@@ -26,7 +26,7 @@ class Factory {
 	}
 	
 	/**
-	 * Get a Database Configuration class by its type (name)
+	 * Get a Mailer Configuration class by its type (name)
 	 *
 	 * @param string $type The driver type (mysql, mssql, oracle, pgsql)
 	 * @return string
