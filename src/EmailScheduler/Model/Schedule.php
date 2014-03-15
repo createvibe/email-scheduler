@@ -54,6 +54,13 @@ class Schedule {
 	public $emailSubject;
 	
 	/**
+	 * The body (content) of this message
+	 *
+	 * @type string
+	 */
+	public $emailBody;
+	
+	/**
 	 * The number of times this message has unsuccessfully attempted to send
 	 *
 	 * @type int

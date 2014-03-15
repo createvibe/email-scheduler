@@ -2,23 +2,23 @@
 
 namespace EmailScheduler\Configuration\Mailer\Smtp;
 
-use EmailScheduler\Configuration\Configuration;
+use EmailScheduler\Configuration\Mailer\MailerConfiguration;
 
-class Gmail extends Configuration {
+class Gmail extends MailerConfiguration {
 	
 	/**
 	 * The Host 
 	 *
 	 * @type string
 	 */
-	protected $host = 'smtp.google.com';
+	protected $host = 'smtp.gmail.com';
 	
 	/**
 	 * The Port
 	 *
 	 * @type int
 	 */
-	protected $port = 467;
+	protected $port = 465;
 	
 	/**
 	 * The SSL boolean flag

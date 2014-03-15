@@ -2,7 +2,7 @@
 
 namespace EmailScheduler\Database\Repository;
 
-use EmailSchedule\Model\Schedule,
+use EmailScheduler\Model\Schedule,
 	EmailScheduler\Hydrator\ModelHydrator;
 
 /**
@@ -71,7 +71,7 @@ class ScheduleRepository extends Repository {
 
 		$st = $this->pdo->prepare(
 			'select id, user_id, email_from, email_from_name, email_to, email_to_name, email_subject, email_body, ' .
-					'attemptCount, delivered_at, send_at, created_at, updated_at ' .
+					'attempt_count, delivered_at, send_at, created_at, updated_at ' .
 			'from email_schedule ' .
 			'where send_at <= :now ' .
 			'and delivered_at is null ' .

@@ -73,10 +73,11 @@ abstract class AbstractMailer {
 				
 				$sent = $mailer->send(
 					\Swift_Message::newInstance()
-						->setSubject($schedule->subject)
-						->setFrom(array($schedule->emailFromName => $schedule->emailFrom))
-						->setTo(array($schedule->emailToName => $schedule->emailTo))
+						->setSubject($schedule->emailSubject)
+						->setFrom(array($schedule->emailFrom => $schedule->emailFromName))
+						->setTo(array($schedule->emailTo => $schedule->emailToName))
 						->setBody($schedule->emailBody)
+						->setContentType($this->config->getContentType())
 				);
 			
 				// update delivered-at if it was sent

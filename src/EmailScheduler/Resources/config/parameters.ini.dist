@@ -16,6 +16,7 @@ type = smtp
 configuration = gmail
 username = 0
 password = 0
+contentType = text/plain
 
 [schedule]
 archive = 21 days

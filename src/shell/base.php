@@ -19,8 +19,10 @@ $db = new EmailScheduler\Database\Connection($databaseConfiguration);
 $repository = new EmailScheduler\Database\Repository\ScheduleRepository($db);
 
 // initialize the Mailer
-$mailer = EmailScheduler\Mailer\Factory::getMailerByType($params['mailer']['type'], EmailScheduler\Configuration\Mailer\Factory::getConfiguration(
+$mailerConfiguration = EmailScheduler\Configuration\Mailer\Factory::getConfiguration(
 	$params['mailer']['type'] , 
 	$params['mailer']['configuration'] , 
 	$params['mailer']
-));
+);
+$mailerConfiguration->setContentType($params['mailer']['contentType']);
+$mailer = EmailScheduler\Mailer\Factory::getMailerByType($params['mailer']['type'], $mailerConfiguration);
