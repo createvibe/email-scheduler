@@ -54,7 +54,7 @@ class Install {
 					$str .= ', ';
 				}
 				
-				$str .= '"' . $key . '" => "' . $io->ask($section . '.' . $key, $value || null) . '"';
+				$str .= '"' . $key . '" => "' . $io->ask($section . '.' . $key, $value ?: null) . '"';
 			}
 			
 			$str .= ')'
