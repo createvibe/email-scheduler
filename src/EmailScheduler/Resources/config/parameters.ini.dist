@@ -2,7 +2,7 @@
 
 ; You are not supposed to modify this file
 
-; When you install this package with Composer, a parameters.ini is generated for you
+; When you install this package with Composer, a parameters.php is generated for you
 
 [database]
 type = mysql
