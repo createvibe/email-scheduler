@@ -1,6 +1,6 @@
 # Email Scheduler
 
-*CAUTION: This is not yet fully tested and may not work as expected.  Check back really really soon for a stable release.*
+*NOTE: This has only been tested with MySQL and does not yet support Oracle or PGSQL*
 
 Thanks for stopping by.  The Email Scheduler was written for a friend in need.  As you find yourself here, perhaps I have made yet another friend in need.
 
