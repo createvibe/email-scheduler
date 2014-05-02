@@ -51,7 +51,7 @@ Assuming you have MySQL, you could do the following to install the schema:
 # Usage Example
 
 	// get the PDO connection
-	$mysqlConfig = new EmailScheduler\Config\Database\Mysql('localhost', 'root', 'root');
+	$mysqlConfig = new EmailScheduler\Configuration\Database\Mysql('localhost', 'root', 'root');
 	$mysqlConfig->setDatabaseName('email_scheduler');
 	
 	$pdo = new EmailScheduler\Database\Connection($mysqlConfig);
