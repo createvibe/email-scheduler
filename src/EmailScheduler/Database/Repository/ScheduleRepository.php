@@ -44,6 +44,7 @@ class ScheduleRepository extends Repository {
 					'to' => $schedule->emailTo ,
 					'toName' => $schedule->emailToName ,
 					'subject' => $schedule->emailSubject ,
+					'body' => $schedule->emailBody ,
 					'delivered' => $schedule->deliveredAt ? $schedule->deliveredAt->format('Y-m-d H:i:s') : null ,
 					'send' => $schedule->sendAt ? $schedule->sendAt->format('Y-m-d H:i:s') : null ,
 					'createdAt' => $createdAt ,
