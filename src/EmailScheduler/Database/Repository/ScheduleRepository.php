@@ -23,7 +23,7 @@ class ScheduleRepository extends Repository {
 			'insert into email_schedule ' .
 			'(user_id, email_from, email_from_name, email_to, email_to_name, email_subject, email_body, ' .
 				'delivered_at, send_at, created_at, updated_at) ' .
-			'values (:userId, :from, :fromName, :to, :toName, :subject, :body, :delivered, :send, :created, :updated)'
+			'values (:userId, :from, :fromName, :to, :toName, :subject, :body, :delivered, :send, :createdAt, :updatedAt)'
 		);
 		
 		foreach ($schedules as $schedule) {
