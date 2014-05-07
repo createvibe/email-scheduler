@@ -7,11 +7,11 @@
 // include the vendor autoloader
 $autoLoader = require __DIR__ . '/../../vendor/autoload.php';
 
-// get the configutration parameters
+// get the configuration parameters
 $params = require __DIR__ . '/../EmailScheduler/Resources/config/parameters.php';
 
 // initialize the pdo Connection 
-$databaseConfiguration = \EmailScheduler\Configuration\Database\Factory::getConfiguration($params['database']['type'], $params['database']);
+$databaseConfiguration = EmailScheduler\Configuration\Database\Factory::getConfiguration($params['database']['type'], $params['database']);
 $databaseConfiguration->setDatabaseName($params['database']['name']);
 $db = new EmailScheduler\Database\Connection($databaseConfiguration);
 
