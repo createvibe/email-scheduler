@@ -189,7 +189,7 @@ class ScheduleRepository extends Repository {
 		
 		$len = count($ids);
 		if ($len > 0) {
-			$st = $this->pdo->execute(
+			$st = $this->pdo->prepare(
 				'delete email_schedule ' .
 				'from email_schedule ' .
 				'where id in (' . trim(str_repeat('?,', $len), ',') . ')'
